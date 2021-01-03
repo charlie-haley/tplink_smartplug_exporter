@@ -13,6 +13,11 @@ def process_request():
     hosts_env_var = os.getenv('HS1X_HOSTS') or "192.168.1.156:9999,192.168.1.159:9999"
     hosts = hosts_env_var.split(',')
 
+    current_ma = Gauge('current_ma', 'Description of gauge', ["host"])
+    voltage_mv = Gauge('voltage_mv', 'Description of gauge', ["host"])
+    power_mw = Gauge('power_mw', 'Description of gauge', ["host"])
+    total_wh = Gauge('total_wh', 'Description of gauge', ["host"])
+
     for val in hosts:
         hostname = val.split(':')
         ip = hostname[0]
@@ -33,15 +38,10 @@ def process_request():
             print(result)
             result = result["emeter"]["get_realtime"]
 
-            current_ma = Gauge('current_ma', 'Description of gauge')
-            voltage_mv = Gauge('voltage_mv', 'Description of gauge')
-            power_mw = Gauge('power_mw', 'Description of gauge')
-            total_wh = Gauge('total_wh', 'Description of gauge')
-
-            current_ma.labels('host', hostname).set(result["current_ma"])
-            voltage_mv.labels('host', hostname).set(result["voltage_mv"])
-            power_mw.labels('host', hostname).set(result["power_mw"])
-            total_wh.labels('host', hostname).set(result["total_wh"])
+            current_ma.labels(val).set(result["current_ma"])
+            voltage_mv.labels(val).set(result["voltage_mv"])
+            power_mw.labels(val).set(result["power_mw"])
+            total_wh.labels(val).set(result["total_wh"])
 
         except socket.error:
             quit(f"Could not connect to host {ip}:{port}")
