@@ -12,8 +12,7 @@ jobs:
       DOCKER_REGISTRY: registry.hub.docker.com
       DOCKER_IMAGE: chhaley/tplink_smartplug_exporter     
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}  
-      DOCKER_TARGET_PLATFORM: linux/arm/v7                 
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}                
     steps:    
     - name: Checkout the code       
       uses: actions/checkout@v1          
@@ -34,5 +33,5 @@ jobs:
         echo "${DOCKER_PASSWORD}" | docker login ${DOCKER_REGISTRY} --username "${DOCKER_USERNAME}" --password-stdin          
     - name: Run Buildx (push image)      
       if: success()      
-      run: |        
-        docker buildx build \        --platform ${{ steps.prepare.outputs.docker_platform }} \        --tag ${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }} \        --file ./Dockerfile \        --output type=image,push=true .
+      run: |
+        docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t ${DOCKER_IMAGE}:latest --push .
