@@ -10,14 +10,14 @@ from prometheus_client import start_http_server, Summary, Gauge
 
 
 def process_request():
-    hosts_env_var = os.getenv('HS1X_HOSTS')
+    hosts_env_var = str(os.getenv('HS1X_HOSTS'))
     hosts = hosts_env_var.split(',')
 
     for val in hosts:
         hostname = val.split(':')
         ip = hostname[0]
         port = hostname[1]
-        print(f'GETTING ENERGY INFO FOR {ip} {port}')
+
         try:
             sock_tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             sock_tcp.settimeout(int(10))
