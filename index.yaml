@@ -3,6 +3,16 @@ entries:
   tplink-smartplug-exporter:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2021-01-04T21:58:07.557689388Z"
+    description: Prometheus Exporter for TP-Link Smart Plugs
+    digest: e04014696c3ec5b4ffd9f4372cf03281f9bba545fdb30b5e50fea2b4c242f1d2
+    name: tplink-smartplug-exporter
+    type: application
+    urls:
+    - https://github.com/charlie-haley/tplink_smartplug_exporter/releases/download/tplink-smartplug-exporter-0.1.2/tplink-smartplug-exporter-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2021-01-04T21:28:54.461514121Z"
     description: Prometheus Exporter for TP-Link Smart Plugs
     digest: e6367aaff9d77c7700b83e53c8fc59f60562817afd7f481d3f5ccc17d77634cd
