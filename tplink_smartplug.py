@@ -10,13 +10,8 @@ from prometheus_client import start_http_server, Summary, Gauge
 
 
 def process_request():
-    hosts_env_var = os.getenv('HS1X_HOSTS') or "192.168.1.156:9999,192.168.1.159:9999"
+    hosts_env_var = os.getenv('HS1X_HOSTS')
     hosts = hosts_env_var.split(',')
-
-    current_ma = Gauge('current_ma', 'Description of gauge', ["host"])
-    voltage_mv = Gauge('voltage_mv', 'Description of gauge', ["host"])
-    power_mw = Gauge('power_mw', 'Description of gauge', ["host"])
-    total_wh = Gauge('total_wh', 'Description of gauge', ["host"])
 
     for val in hosts:
         hostname = val.split(':')
@@ -35,7 +30,6 @@ def process_request():
             decrypted = decrypt(data[4:])
 
             result = json.loads(decrypted)
-            print(result)
             result = result["emeter"]["get_realtime"]
 
             current_ma.labels(val).set(result["current_ma"])
@@ -68,9 +62,13 @@ def decrypt(string):
     return result
 
 if __name__ == '__main__':
-    # Start up the server to expose the metrics.
     start_http_server(9784)
-    # Generate some requests.
+
+    current_ma = Gauge('current_ma', 'Description of gauge', ["host"])
+    voltage_mv = Gauge('voltage_mv', 'Description of gauge', ["host"])
+    power_mw = Gauge('power_mw', 'Description of gauge', ["host"])
+    total_wh = Gauge('total_wh', 'Description of gauge', ["host"])
+    
     while True:
         process_request()
 
