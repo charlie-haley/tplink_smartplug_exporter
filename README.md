@@ -1,6 +1,9 @@
 # tplink_smartplug_exporter
 Prometheus Exporter for TP-Link Smart Plugs
 
+## Requirements
+If you want to use the ServiceMonitor, which is enabled by default. You'll need to have [prometheus-operator](https://github.com/prometheus-operator/prometheus-operator) deployed to your cluster, see [values](charts/tplink-smartplug-exporter/values.yaml) to disable it if you'd like use ingress instead.
+
 ## Installation
 
 ### Docker
