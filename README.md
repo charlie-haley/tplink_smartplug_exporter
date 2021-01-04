@@ -14,7 +14,7 @@ Prometheus Exporter for TP-Link Smart Plugs
 
 ### Helm
 ```
-helm repo add tplink_smartplug_exporter https://charlie-haley.github.io/tplink_smartplug_exporter/
+helm repo add charlie-haley https://charlie-haley.github.io/tplink_smartplug_exporter/
 helm repo update
-helm install tplink_smartplug_exporter/tplink_smartplug_exporter --set hs1xHosts={"192.168.1.156:9999","192.168.1.159:9999"}
+helm install tplink-smartplug-exporter charlie-haley/tplink-smartplug-exporter --set "hs1xHosts={"192.168.1.156:9999","192.168.1.159:9999"}" -n monitoring
 ```
