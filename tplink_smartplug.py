@@ -64,10 +64,10 @@ def decrypt(string):
 if __name__ == '__main__':
     start_http_server(9784)
 
-    current_ma = Gauge('current_ma', 'Description of gauge', ["host"])
-    voltage_mv = Gauge('voltage_mv', 'Description of gauge', ["host"])
-    power_mw = Gauge('power_mw', 'Description of gauge', ["host"])
-    total_wh = Gauge('total_wh', 'Description of gauge', ["host"])
+    current_ma = Gauge('current_ma', 'Current being used in milliamps', ["host"])
+    voltage_mv = Gauge('voltage_mv', 'Voltage being used in millivolts', ["host"])
+    power_mw = Gauge('power_mw', 'Watts being used in milliwatts', ["host"])
+    total_wh = Gauge('total_wh', 'Total watt-hours', ["host"])
     
     while True:
         process_request()
