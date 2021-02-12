@@ -24,9 +24,9 @@ If you want to use the ServiceMonitor (which is enabled by default) you'll need 
 
 
 ## Metrics
-Name     | Description
----------|-------------------------------------------------------------------------
-current_ma | Current being used in milliamps
-voltage_mv  | Voltage being used in millivolts
-power_mw  | Watts being used in milliwatts
-total_wh | Total watt-hours
+Name     | Description                             | Labels
+------------|--------------------------------------|------
+current_ma  | Current being used in milliamps      | host
+voltage_mv  | Voltage being used in millivolts     | host
+power_mw    | Watts being used in milliwatts       | host
+total_wh    | Total watt-hours                     | host
