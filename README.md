@@ -16,7 +16,7 @@ The exporter listens on port `9784` by default.
 
 ### Helm
 ```
-helm repo add charlie-haley https://charlie-haley.github.io/private-charts
+helm repo add charlie-haley http://charts.charliehaley.dev
 helm repo update
 helm install tplink-smartplug-exporter charlie-haley/tplink-smartplug-exporter --set "hs1xHosts={"192.168.1.156:9999","192.168.1.159:9999"}" -n monitoring
 ```
