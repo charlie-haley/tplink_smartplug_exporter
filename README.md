@@ -20,7 +20,7 @@ helm repo add charlie-haley http://charts.charliehaley.dev
 helm repo update
 helm install tplink-smartplug-exporter charlie-haley/tplink-smartplug-exporter --set "hs1xHosts={"192.168.1.156:9999","192.168.1.159:9999"}" -n monitoring
 ```
-If you want to use the ServiceMonitor (which is enabled by default) you'll need to have [prometheus-operator](https://github.com/prometheus-operator/prometheus-operator) deployed to your cluster, see [values](charts/tplink-smartplug-exporter/values.yaml) to disable it if you'd like use ingress instead.
+If you want to use the ServiceMonitor (which is enabled by default) you'll need to have [prometheus-operator](https://github.com/prometheus-operator/prometheus-operator) deployed to your cluster, see [values](https://github.com/charlie-haley/private-charts/blob/main/charts/tplink-smartplug-exporter/values.yaml) to disable it if you'd like use ingress instead.
 
 [You can find the chart repo here](https://github.com/charlie-haley/private-charts), if you'd like to contribute. 
 
