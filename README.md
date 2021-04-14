@@ -1,4 +1,6 @@
 # tplink_smartplug_exporter
+![docker-publish](https://github.com/charlie-haley/tplink_smartplug_exporter/actions/workflows/docker-publish.yml/badge.svg)
+
 Prometheus Exporter for TP-Link Smart Plugs
 
 ## Installation
