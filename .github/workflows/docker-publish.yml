@@ -1,9 +1,11 @@
+---
 name: Docker Build/Publish
 
 on:
   push:
-    branches:
-      - main
+    # Sequence of patterns matched against refs/tags
+    tags:
+    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:   
   build:    
@@ -34,4 +36,5 @@ jobs:
     - name: Run Buildx (push image)      
       if: success()      
       run: |
+        docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t chhaley/tplink_smartplug_exporter:${{ github.ref }} --push .
         docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t chhaley/tplink_smartplug_exporter:latest --push .
