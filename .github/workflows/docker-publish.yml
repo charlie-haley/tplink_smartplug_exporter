@@ -36,5 +36,5 @@ jobs:
     - name: Run Buildx (push image)      
       if: success()      
       run: |
-        docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t chhaley/tplink_smartplug_exporter:${{ github.ref }} --push .
+        docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t chhaley/tplink_smartplug_exporter:${GITHUB_REF#refs/*/} --push .
         docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t chhaley/tplink_smartplug_exporter:latest --push .
