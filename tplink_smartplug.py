@@ -4,6 +4,7 @@ import os
 import socket
 import json
 import random
+import logging
 from struct import pack
 from time import time, sleep
 from prometheus_client import start_http_server, Summary, Gauge
@@ -19,6 +20,7 @@ def process_request():
         port = hostname[1]
 
         try:
+            logging.info(f'Fetching data from host {ip}:{port}')
             sock_tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             sock_tcp.settimeout(int(10))
             sock_tcp.connect((str(ip), int(port)))
@@ -37,8 +39,9 @@ def process_request():
             power_mw.labels(val).set(result["power_mw"])
             total_wh.labels(val).set(result["total_wh"])
 
+            logging.info(f'Successfully fetched data from host {ip}:{port}')
         except socket.error:
-            quit(f"Could not connect to host {ip}:{port}")
+            logging.warning(f"Could not connect to host {ip}:{port}. Retrying...")
     sleep(60 - time() % 60)
 
 # Encryption and Decryption of TP-Link Smart Home Protocol
