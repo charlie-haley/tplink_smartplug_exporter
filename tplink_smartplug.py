@@ -9,6 +9,7 @@ from struct import pack
 from time import time, sleep
 from prometheus_client import start_http_server, Summary, Gauge
 
+logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 
 def process_request():
     hosts_env_var = str(os.getenv('HS1X_HOSTS'))
