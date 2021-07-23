@@ -11,10 +11,7 @@ from prometheus_client import start_http_server, Summary, Gauge
 
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 
-def process_request():
-    hosts_env_var = str(os.getenv('HS1X_HOSTS'))
-    hosts = hosts_env_var.split(',')
-
+def process_request(hosts):
     for val in hosts:
         hostname = val.split(':')
         ip = hostname[0]
@@ -73,6 +70,11 @@ if __name__ == '__main__':
     power_mw = Gauge('power_mw', 'Watts being used in milliwatts', ["host"])
     total_wh = Gauge('total_wh', 'Total watt-hours', ["host"])
     
+    hosts_env_var = str(os.getenv('HS1X_HOSTS'))
+    hosts = hosts_env_var.split(',')
     while True:
-        process_request()
+        try:
+            process_request(hosts)
+        except:
+            logging.warning(f"Error processing request. Retrying...")
 
