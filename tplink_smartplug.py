@@ -22,7 +22,7 @@ def process_request(hosts):
             sock_tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             sock_tcp.settimeout(int(10))
             sock_tcp.connect((str(ip), int(port)))
-            sock_tcp.settimeout(None)
+            sock_tcp.settimeout(120)
             sock_tcp.send(encrypt('{"emeter":{"get_realtime":{}}}'))
             data = sock_tcp.recv(2048)
             sock_tcp.close()
