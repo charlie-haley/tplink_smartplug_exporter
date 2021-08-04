@@ -11,7 +11,7 @@ The exporter listens on port `9784` by default.
 ```
  docker run -d \
     -e HS1X_HOSTS='192.168.1.156:9999,192.168.1.159:9999' \
-    --network host \
+    -p 9784:9784 \
     --name tplink_smartplug_exporter \
     chhaley/tplink_smartplug_exporter
 ```
